@@ -1,6 +1,33 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
+function Card({ children, className = "" }) {
+  return <div className={`border bg-white ${className}`}>{children}</div>;
+}
+
+function CardContent({ children, className = "" }) {
+  return <div className={className}>{children}</div>;
+}
+
+function Button({ children, className = "", variant, size, ...props }) {
+  const variantClass =
+    variant === "secondary"
+      ? "bg-slate-100 text-slate-900 hover:bg-slate-200"
+      : "bg-slate-950 text-white hover:bg-slate-800";
+
+  const sizeClass = size === "sm" ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm";
+
+  return (
+    <button
+      type="button"
+      className={`inline-flex items-center justify-center font-medium transition ${variantClass} ${sizeClass} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
 const STAGES = [
   "Target Identified",
   "Outreach Initiated",
